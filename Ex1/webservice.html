@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<script src="http://code.jquery.com/jquery-2.2.4.min.js">
+		</script>
+		Lat,Long 1: <br>
+		<input type = "text" id = "latlng"> 
+		<br>
+		<br>
+		<button type "button" onClick = "geocodeLatLng1()"> Find </button> 
+		<br>
+		<p id = "pst"></p>
+		<br>
+		Lat,Long 2: <br>
+		<input type = "text" id = "latlng2"> <br>
+		<br>
+		<button type "button" onClick = "geocodeLatLng2()"> Find </button> 
+		<br>
+		<p id = "latlon2"></p>
+		<br>
+		<br>
+		<button type="button" onclick="getDistanceFromLatLonInKm()">Get distance</button>
+		<br>
+		<p id="km"></p>
+		<script>
+			var x = document.getElementById("pst");
+			var y = document.getElementById("latlon2");
+			var z = document.getElementById("km")
+
+			function geocodeLatLng1() {
+				var input = document.getElementById('latlng').value;
+				var latlngStr = input.split(',', 2);
+				var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+				var geocoder = new google.maps.Geocoder;
+				geocoder.geocode({'location': latlng}, function(results, status) {
+					if (status === 'OK') {
+						if (results[0]) {
+							x.innerHTML = results[0].formatted_address;
+
+						} else {
+							window.alert('No results found');
+						}
+					} else {
+						window.alert('Geocoder failed due to: ' + status);
+					}
+				});
+			}
+
+			function geocodeLatLng2() {
+				var input = document.getElementById('latlng2').value;
+				var latlngStr = input.split(',', 2);
+				var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+				var geocoder = new google.maps.Geocoder;
+				geocoder.geocode({'location': latlng}, function(results, status) {
+					if (status === 'OK') {
+						if (results[0]) {
+							y.innerHTML = results[0].formatted_address;
+
+						} else {
+							window.alert('No results found');
+						}
+					} else {
+						window.alert('Geocoder failed due to: ' + status);
+					}
+				});
+			}
+
+			function deg2rad(deg) {
+				return deg * (Math.PI/180);
+			}
+
+			function getDistanceFromLatLonInKm() {
+				var input = document.getElementById('latlng').value;
+				var latlngStr = input.split(',', 2);
+				var lat1 = parseFloat(latlngStr[0]);
+				var lon1 = parseFloat(latlngStr[1]);
+
+				var input2 = document.getElementById('latlng2').value;
+				var latlngStr2 = input2.split(',', 2);
+				var lat2 = parseFloat(latlngStr2[0]);
+				var lon2 = parseFloat(latlngStr2[1]);
+
+				var R = 6371; // Radius of the earth in km
+				var dLat = deg2rad(lat2-lat1);  // deg2rad below
+				var dLon = deg2rad(lon2-lon1); 
+				console.log(lat2+" "+lon2);
+				var a = 
+					Math.sin(dLat/2) * Math.sin(dLat/2) +
+					Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+					Math.sin(dLon/2) * Math.sin(dLon/2)
+					; 
+				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+				var d = R * c; // Distance in km
+				z.innerHTML = "Distance between 2 place "+ d +" km"; 
+			}
+
+
+		</script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXeMGnStUtUn5N5Gsdy40LcNvARvqjGTc">
+    	</script>
+	</body>
+</html>
