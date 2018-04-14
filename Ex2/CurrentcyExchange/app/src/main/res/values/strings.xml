@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CurrentcyExchange</string>
+    <string name="title">Chọn loại đổi: </string>
+
+    <string name="vndTousd">VND To USD</string>
+    <string name="usdTovnd">USD To VND</string>
+    <string name="usdToeur">USD To EUR</string>
+    <string name="eurTousd">EUR To USD</string>
+    <string name="vndToeur">VND To EUR</string>
+    <string name="eurTovnd">EUR To VND</string>
+
+    <string name="change" > Exchange</string>
+    <string name="equal">=</string>
+    <string name="number">fill number here</string>
+    <string name="positivebutton">cancel</string>
+
+</resources>

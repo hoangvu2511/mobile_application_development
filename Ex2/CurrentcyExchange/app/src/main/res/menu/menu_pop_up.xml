@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/vndTousd"/>
+    <item
+        android:id="@+id/one"
+        android:title="@string/usdTovnd"/>
+    <item
+        android:id="@+id/two"
+        android:title="@string/usdToeur"/>
+    <item
+        android:id="@+id/three"
+        android:title="@string/eurTousd"/>
+
+    <item
+        android:id="@+id/four"
+        android:title="@string/vndToeur"/>
+
+    <item
+        android:id="@+id/five"
+        android:title="@string/eurTovnd"/>
+
+</menu>
